@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './NavBar';
-
+import FormularioPaciente from './FormularioPaciente';
 
 const Dashboard = () => {
+  const [showForm, setShowForm] = useState(false);
+
+  const handleAddPatientClick = () => setShowForm(true);
+  const handleCloseForm = () => setShowForm(false);
+
   return (
     <div>
-      <Navbar />
+      <Navbar onAddPatientClick={handleAddPatientClick} />
       <div className="p-4">
-        {/* Aquí puedes agregar el contenido del Dashboard */}
         <h1>Bienvenido al Dashboard</h1>
       </div>
+      {showForm && <FormularioPaciente onClose={handleCloseForm} />}
     </div>
-    
   );
 };
 
